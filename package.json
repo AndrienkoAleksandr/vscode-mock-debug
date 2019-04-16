@@ -52,11 +52,6 @@
 		"tslint": "5.11.0",
 		"vsce": "1.53.2"
 	},
-	"main": "./out/extension",
-	"activationEvents": [
-		"onDebug",
-		"onCommand:extension.mock-debug.getProgramName"
-	],
 	"contributes": {
 		"breakpoints": [
 			{
@@ -69,6 +64,11 @@
 				"label": "Mock Debug",
 				"program": "./out/debugAdapter.js",
 				"runtime": "node",
+				"enableBreakpointsFor": {
+					"languageIds": [
+						"markdown"
+					]
+				},
 				"configurationAttributes": {
 					"launch": {
 						"required": [
@@ -78,7 +78,7 @@
 							"program": {
 								"type": "string",
 								"description": "Absolute path to a text file.",
-								"default": "${workspaceFolder}/${command:AskForProgramName}"
+								"default": "${workspaceFolder}/readme.md"
 							},
 							"stopOnEntry": {
 								"type": "boolean",
@@ -97,8 +97,8 @@
 					{
 						"type": "mock",
 						"request": "launch",
-						"name": "Ask for file name",
-						"program": "${workspaceFolder}/${command:AskForProgramName}",
+						"name": "Use readme.md from workspace folder",
+						"program": "${workspaceFolder}/readme.md",
 						"stopOnEntry": true
 					}
 				],
@@ -109,15 +109,12 @@
 						"body": {
 							"type": "mock",
 							"request": "launch",
-							"name": "Ask for file name",
-							"program": "^\"\\${workspaceFolder}/\\${command:AskForProgramName}\"",
+							"name": "Use readme.md from workspace folder",
+							"program": "^\"\\${workspaceFolder}/\\readme.md\"",
 							"stopOnEntry": true
 						}
 					}
-				],
-				"variables": {
-					"AskForProgramName": "extension.mock-debug.getProgramName"
-				}
+				]
 			}
 		]
 	}

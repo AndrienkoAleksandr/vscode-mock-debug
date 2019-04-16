@@ -48,7 +48,7 @@
 			"name": "Mock Sample",
 			"type": "mock",
 			"request": "launch",
-			"program": "${workspaceFolder}/${command:AskForProgramName}",
+			"program": "${workspaceFolder}/readme.md",
 			"stopOnEntry": true
 		}
 	],
